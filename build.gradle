@@ -1,0 +1,58 @@
+/*
+   Project house_build_blockchain
+
+   Gradle build file for JaCaMo Application
+   Outubro 23, 2017 - 14:17:37
+*/
+
+defaultTasks 'run'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version '1.0'
+group   'org.jacamo'
+
+sourceCompatibility = 8
+targetCompatibility = 8
+
+repositories {
+    mavenCentral()
+
+    maven {url "http://jacamo.sourceforge.net/maven2"}
+    maven {url "http://jade.tilab.com/maven/"}
+
+    flatDir {
+       dirs 'lib'
+    }
+}
+
+dependencies {
+    compile group: 'org.jacamo',     name: 'jacamo' ,   version: '0.7-SNAPSHOT'
+    compile ('org.web3j:core:2.3.0')
+
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/env'
+            srcDir 'src/agt/jia'
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+    }
+}
+
+task run (type: JavaExec, dependsOn: 'classes') {
+    description 'runs the application'
+    main = 'jacamo.infra.JaCaMoLauncher'
+    args 'house_build_blockchain.jcm'
+    classpath sourceSets.main.runtimeClasspath
+}
+
+clean {
+    delete 'bin'
+    delete 'build'
+}

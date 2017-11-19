@@ -1,0 +1,30 @@
+/*
+    house_build_blockchain
+    ---------------------------
+
+    JaCaMo Project File
+
+    This file defines the initial state of the MAS (initial agents, environment, organisation, ....)
+
+    (see jacamo/doc/jcm.html for more information about what can be defined in this file)
+
+    JaCaMo 0.6
+    Outubro 23, 2017 - 14:17:37
+*/
+
+mas house_building {
+
+   agent giacomo     // the agent that wants to build a house
+
+   agent companyA   // builder agents (see their code for details)
+   agent companyB
+   agent companyC {
+      instances: 5
+   }
+   agent companyD {
+      instances: 13
+   }
+   agent companyE
+
+   asl-path:  src/agt, src/agt/inc
+}
